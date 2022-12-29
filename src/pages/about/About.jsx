@@ -18,8 +18,7 @@ const About = () => {
                                 Bijbelapplicatie te bouwen.</p>
                             <p className={styles.aboutTekst}>Mijn geloof in JHWH vormt het fundament van mijn bestaan en Zijn woord is mijn morele
                                 kompas. Ik hoop dan ook dat de Bijbel jou net zo zal inspireren en dat het een licht
-                                voor jou
-                                voeten mag zijn.</p>
+                                voor jouw voeten mag zijn.</p>
                             <p className={styles.aboutNaam}>Mirre</p>
                         </div>
                     </div>
