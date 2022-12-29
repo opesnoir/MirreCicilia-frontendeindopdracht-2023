@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+.footerOuterContainer{
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    background-color: #062948;
+    margin: 10px 0 0 0;
+    padding: 25px 30px;
+    line-height: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: bolder;
+    color: #f7f0f0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /*width: 1512px;*/
+    box-sizing: border-box;
+    justify-content: center;
+}
+.footerIcons{
+    padding-left: 60%;
+}
+.footerLink{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    font-weight: lighter;
+    color:  #f7f0f0;
+    text-decoration: none;
+
+}
+.footerItemYear{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: lighter;
+}

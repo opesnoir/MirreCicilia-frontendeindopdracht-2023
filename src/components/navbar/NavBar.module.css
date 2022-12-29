@@ -1,0 +1,52 @@
+.navBarContainer{
+    height: 80px;
+    width: 1512px;
+    max-width: 100%;
+    display: block;
+    box-sizing: border-box;
+    margin: 2rem auto;
+    background-color: #f7f0f0;
+}
+ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    list-style-type: none;
+    background-color: #f7f0f0;
+    padding: 20px;
+}
+li, .navLink{
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 22px;
+    list-style-type: none;
+    text-decoration: none solid #062948;
+    word-spacing: 1px;
+    text-align: left;
+    height: 50px;
+    width: 140px;
+    padding: 40px 11px;
+    background-color: #f7f0f0;
+}
+nav a{
+    text-decoration: none;
+    font-weight: bold;
+    color: #1D3D54;
+}
+nav a:hover{
+    color: #623a1f;
+    font-weight: normal;
+}
+nav a:focus{
+    color: #860E0E;
+    font-weight: bold;
+}
+.navBarLogo{
+    height: 100px;
+    width: 100px;
+    max-height: 100px;
+}
