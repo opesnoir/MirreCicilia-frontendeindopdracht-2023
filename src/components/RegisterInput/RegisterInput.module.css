@@ -1,0 +1,17 @@
+.registerForminput{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 800px;
+}
+
+.registerFormInputTekst{
+    font-size: 20px;
+    padding: 13px;
+    margin: 14px;
+
+}
+.errorsTekst{
+    color: #860E0E;
+    font-size: 14px;
+}
