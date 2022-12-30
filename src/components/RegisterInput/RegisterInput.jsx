@@ -9,7 +9,6 @@ const RegisterInput = ({name, children, label, required, type, placeholder, vali
             <label htmlFor={name}>
                 {label}
                 {required}
-
             </label>
             <input className={styles.registerFormInputTekst}
                 id={name}

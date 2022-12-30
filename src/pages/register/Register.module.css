@@ -103,3 +103,25 @@
     width: 100%;
     max-width: 100%;
 }
+
+.registerCheckbox{
+    color: #062948;
+    margin: 20px 40px 15px 50px;
+}
+
+.registerNaarInlog{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    font-size: 22px;
+}
+.registerLink{
+    font-weight: bolder;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.registerLink:hover{
+    color: #860E0E
+}
+
