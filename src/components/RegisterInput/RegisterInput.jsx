@@ -1,6 +1,6 @@
 import React from 'react';
 
-const RegisterInput = ({name, label, required, type, placeholder, validationSchema, errors, ...register}) => {
+const RegisterInput = ({name, label, required, type, placeholder, validationSchema, styles, errors, register }) => {
     return (
         <>
             <div className="form-control-input">
@@ -13,11 +13,17 @@ const RegisterInput = ({name, label, required, type, placeholder, validationSche
                 name={name}
                 type={type}
                 placeholder={placeholder}
-                {...register(name,
-                    validationSchema)}
+                {...register(name, validationSchema)}
             />
-            {errors && errors.name.type === "required" && (<p className="error" >{errors.name.message}</p>)}
-            {errors && errors.name.type === "minLength" && (<p className="error">{errors.name.message}</p>)}
+                {errors && errors[name]?.type === "required" && (
+                    <span className="error">{errors[name]?.message}</span>
+                )}
+                {errors && errors[name]?.type === "pattern" && (
+                    <span className="error">{errors[name]?.message}</span>
+                )}
+                {errors && errors[name]?.type === "minLength" && (
+                    <span className="error">{errors[name]?.message}</span>
+                )}
             </div>
         </>
     );

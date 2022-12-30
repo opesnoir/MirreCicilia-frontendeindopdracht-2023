@@ -24,7 +24,9 @@ const About = () => {
                     </div>
                 </div>
             </section>
+            <div>
             <img src={imgSheep} alt="Afbeelding van een Schaap" className={styles.aboutImg}/>
+            </div>
         </>
     );
 };
