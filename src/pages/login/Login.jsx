@@ -7,6 +7,7 @@ import Button from "../../components/Button/Button";
 import {Link} from 'react-router-dom';
 import loginImgSheep from '../../assets/login-sheep-pexels-david-selbert-6467929-2.jpg';
 
+
 const Login = () => {
     const {register, watch, formState: {errors}} = useForm();
     const [showPassword, setShowPassword] = useState(false);
@@ -21,8 +22,8 @@ const Login = () => {
                 <div>
                     <h1 className={styles.loginTitel}>Inloggen</h1>
                 </div>
-                <div>
-                    <div>
+                <div  className={styles.loginformOuterContainer}>
+                    <div className={styles.loginformInnerContainer}>
                         <form>
                             <LoginInput
                                 id="email"
@@ -67,6 +68,14 @@ const Login = () => {
                                 }}
                                 required
                             />
+                            <label>
+                                <input
+                                    className={styles.inlogCheckbox}
+                                    type="checkbox"
+                                    checked={showPassword}
+                                    onChange={() => setShowPassword(!showPassword)}
+                                /> Wachtwoord tonen
+                            </label>
                             <div className={styles.loginButtonContainer}>
                                 <Button type="submit" className={styles.loginButton}>Inloggen</Button>
                             </div>

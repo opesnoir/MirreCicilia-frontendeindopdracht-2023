@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from "../RegisterInput/RegisterInput.module.css";
+import styles from '../LoginInput/LoginInput.module.css'
 
 const LoginInput = ({name, children, role, event, label, required, type, placeholder, validationSchema, errors, register }) => {
     return (

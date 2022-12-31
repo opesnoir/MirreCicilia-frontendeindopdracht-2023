@@ -19,23 +19,23 @@ const Register = () => {
     // save the data with axios library, using a JSON file. Using the POST method of axios
     const [name, setName] = useState(' ');
     const [email, setEmail] = useState(' ');
-    const [password, setPassword] = useState( ' ');
+    const [password, setPassword] = useState(' ');
 
 
     // call function when form is submitted
-    function handleSubmit(event){
+    function handleSubmit(event) {
         event.preventDefault();
 
         // send Post request
-        axios.post('api/save',{
+        axios.post('api/save', {
             name: name,
             email: email,
             password: password,
         })
-            .then(response =>{
+            .then(response => {
                 console.log(response);
             })
-            .catch(error =>{
+            .catch(error => {
                 console.log(error)
             });
     }
@@ -45,7 +45,8 @@ const Register = () => {
             <div className={styles.registerOuterContainer}>
                 <div className={styles.registerInnerContainer}>
                     <div>
-                        <p className={styles.registerNaarInlog}>Heb je al een account? Klik dan <Link className={styles.registerLink} to="/login"> hier </Link> om in te loggen.</p>
+                        <p className={styles.registerNaarInlog}>Heb je al een account? Klik dan <Link
+                            className={styles.registerLink} to="/login"> hier </Link> om in te loggen.</p>
                     </div>
                     <div>
                         <h1 className={styles.registerTitel}>Registreren</h1></div>
@@ -60,7 +61,7 @@ const Register = () => {
                                     name="name"
                                     type="text"
                                     role="user"
-                                    onChange={event=> setName(event.target.value)}
+                                    onChange={event => setName(event.target.value)}
                                     placeholder="Naam:"
                                     errors={errors}
                                     register={register}
@@ -74,7 +75,7 @@ const Register = () => {
                                     name="email"
                                     type="email"
                                     role="user"
-                                    onChange={event=> setEmail(event.target.value)}
+                                    onChange={event => setEmail(event.target.value)}
                                     placeholder="Email:"
                                     errors={errors}
                                     register={register}
@@ -92,7 +93,7 @@ const Register = () => {
                                     name="password"
                                     type={showPassword ? "text" : "password"}
                                     role="user"
-                                    onChange={event=> setPassword(event.target.value)}
+                                    onChange={event => setPassword(event.target.value)}
                                     placeholder="Wachtwoord:"
                                     errors={errors}
                                     register={register}
@@ -132,7 +133,7 @@ const Register = () => {
                                             value: true,
                                             message: "Bevestiging is vereist."
                                         },
-                                    validate:  value =>
+                                        validate: value =>
                                             value === password.current,
                                     }}
                                     required
