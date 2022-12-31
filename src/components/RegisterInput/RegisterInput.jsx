@@ -2,7 +2,7 @@ import React from 'react';
 import styles from '../RegisterInput/RegisterInput.module.css';
 
 
-const RegisterInput = ({name, children, label, required, type, placeholder, validationSchema, errors, register }) => {
+const RegisterInput = ({name, children, role, event, label, required, type, placeholder, validationSchema, errors, register }) => {
     return (
         <>
             <div className={styles.registerForminput}>
@@ -14,6 +14,8 @@ const RegisterInput = ({name, children, label, required, type, placeholder, vali
                 id={name}
                 name={name}
                 type={type}
+                role={role}
+                onChange={event}
                 placeholder={placeholder}
                 {...register(name, validationSchema)}
             />

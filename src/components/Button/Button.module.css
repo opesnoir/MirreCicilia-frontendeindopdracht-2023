@@ -1,43 +1,11 @@
-.loginOuterContainer{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    background-color: #062948;
-}
-
-.loginInnerContainer{
-    width: 80%;
-    padding: 50px 50px;
-    margin: 120px 120px;
-    background-color: #f7f0f0;
-}
-.loginNaarInlog{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    color: #002855;
-    font-size: 22px;
-}
-
-.loginTitel{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    padding: 20px 10px;
-    color: #002855;
-    font-size: 45px;
-    font-family: 'Inter', sans-serif;
-    font-weight: bold;
-}
-
-.loginButtonContainer{
+div{
     display: flex;
     justify-content: center;
     text-align: center;
     padding: 20px 30px;
 }
 
-.loginButton {
+button{
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -54,7 +22,7 @@
     box-shadow: 2px 5px 9px rgba(0, 0, 0, 0.2);
 }
 
-.loginButton:focus, .loginButton:hover{
+button:focus, button:hover{
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -68,14 +36,4 @@
     margin: 60px 10px 10px 10px;
     border-radius: 10px;
     box-shadow: 2px 5px 9px rgba(0, 0, 0, 0.5);
-}
-
-.inlogLink{
-    font-weight: bolder;
-    padding-left: 4px;
-    padding-right: 4px;
-}
-
-.inlogLink{
-    color: #860E0E
 }

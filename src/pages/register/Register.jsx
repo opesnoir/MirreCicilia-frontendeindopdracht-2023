@@ -4,20 +4,41 @@ import RegisterInput from '../../components/RegisterInput/RegisterInput';
 import {useForm} from 'react-hook-form';
 import registerImgSheep from '../../assets/register-sheep-pexels-trinity-kubassek-288621.jpg';
 import {useState} from 'react';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import axios from "axios";
+import Button from "../../components/Button/Button";
 // add noValidate to form, to remove default error messages
 
 const Register = () => {
-    const {register, handleSubmit, reset, watch, formState: {errors}} = useForm();
-    const password = useRef({}); // it returns an object called current
-    password.current = watch("password", " ");
+    const {register, watch, formState: {errors}} = useForm();
+    const userPassword = useRef({}); // it returns an object called current
+    userPassword.current = watch("password", " ");
     const [showPassword, setShowPassword] = useState(false);
-    const [showConfirmedPassword, setShowConfirmedPassword] = useState(false)
+    const [showConfirmedPassword, setShowConfirmedPassword] = useState(false);
 
-    const onSubmit = (data) => {
-        console.log(data);
-        reset();
-    };
+    // save the data with axios library, using a JSON file. Using the POST method of axios
+    const [name, setName] = useState(' ');
+    const [email, setEmail] = useState(' ');
+    const [password, setPassword] = useState( ' ');
+
+
+    // call function when form is submitted
+    function handleSubmit(event){
+        event.preventDefault();
+
+        // send Post request
+        axios.post('api/save',{
+            name: name,
+            email: email,
+            password: password,
+        })
+            .then(response =>{
+                console.log(response);
+            })
+            .catch(error =>{
+                console.log(error)
+            });
+    }
 
     return (
         <>
@@ -33,11 +54,13 @@ const Register = () => {
                             persoonlijke Jubilee account</p></div>
                     <div className={styles.registerformOuterContainer}>
                         <div className={styles.registerformInnerContainer}>
-                            <form onSubmit={handleSubmit(onSubmit)} noValidate>
+                            <form onSubmit={handleSubmit}>
                                 <RegisterInput
                                     id="name"
                                     name="name"
                                     type="text"
+                                    role="user"
+                                    onChange={event=> setName(event.target.value)}
                                     placeholder="Naam:"
                                     errors={errors}
                                     register={register}
@@ -50,6 +73,8 @@ const Register = () => {
                                     id="email"
                                     name="email"
                                     type="email"
+                                    role="user"
+                                    onChange={event=> setEmail(event.target.value)}
                                     placeholder="Email:"
                                     errors={errors}
                                     register={register}
@@ -66,6 +91,8 @@ const Register = () => {
                                     id="password"
                                     name="password"
                                     type={showPassword ? "text" : "password"}
+                                    role="user"
+                                    onChange={event=> setPassword(event.target.value)}
                                     placeholder="Wachtwoord:"
                                     errors={errors}
                                     register={register}
@@ -119,7 +146,7 @@ const Register = () => {
                                     /> Bevestiging tonen
                                 </label>
                                 <div className={styles.registerButtonContainer}>
-                                    <button type="submit" className={styles.registerButton}>Registreren</button>
+                                    <Button type="submit" className={styles.registerButton}>Registreren</Button>
                                 </div>
                             </form>
                         </div>
