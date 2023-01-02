@@ -16,17 +16,17 @@ function App() {
 
   return (
       <>
-        <NavBar/>
-        <Routes>
-          <Route path="/" element={<Home/>}/>
-          <Route path="/about" element={<About/>}/>
-          <Route path="/register" element={<Register/>}/>
-          <Route path="/login" element={<Login/>}/>
-          <Route path="/profile" element={auth === true ? <Profile/> : <Navigate to="/"/>}/>
-          <Route path="/search" element={<Search/>}/>
-          <Route path="*" element={<NotFound/>}/>
-        </Routes>
-        <Footer/>
+          <NavBar/>
+          <Routes>
+              <Route path="/" element={<Home/>}/>
+              <Route path="/about" element={<About/>}/>
+              <Route path="/register" element={<Register/>}/>
+              <Route path="/login" element={<Login/>}/>
+              <Route path="/profile" element={auth === true ? <Profile/> : <Navigate to="/"/>}/>
+              <Route path="/search" element={<Search/>}/>
+              <Route path="*" element={<NotFound/>}/>
+          </Routes>
+          <Footer/>
 
       </>
   );
