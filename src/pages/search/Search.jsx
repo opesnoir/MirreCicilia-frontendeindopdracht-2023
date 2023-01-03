@@ -1,12 +1,12 @@
 import React from 'react';
 import styles from './Search.module.css';
-import SearchState from "../../components/SearchState/SearchState";
+import BibleSearch from "../../components/BibleSearch/BibleSearch";
 
 
 const Search = () => {
     return (
         <div>
-        <SearchState/>
+            <BibleSearch/>
         </div>
     );
 };
