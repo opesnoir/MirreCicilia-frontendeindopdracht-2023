@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import axios from "axios";
+import axios from 'axios';
+import styles from  './SearchState.module.css';
 
 /*STEPS:
 1. create component to store search form and -results;
@@ -51,6 +52,7 @@ const SearchState = () => {
                             <button type="submit">Zoek</button>
                         </div>
                     </form>
+                    <section className={styles.searchSearchResults}>
                     {results.length > 0 && (
                         <ul>
                             {results.map((result) => (
@@ -58,6 +60,7 @@ const SearchState = () => {
                             ))}
                         </ul>
                     )}
+                </section>
                 </div>
             </div>
         </>
