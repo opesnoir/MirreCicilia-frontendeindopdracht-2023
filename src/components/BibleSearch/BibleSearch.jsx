@@ -17,14 +17,15 @@ const BibleSearch = () => {
                 setError(error);
             }
         };
-        fetchBibleIds();
+        void fetchBibleIds();
     }, []);
 
     const handleSearch = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.get(`https://api.scripture.api.bible/v1/bibles/${bibleId}/search?query=${searchTerm}`);
+            const response = await axios.get(`https://api.scripture.api.bible/v1/bibles/${bibleId}/search?query${searchTerm}`);
             setSearchResults(response.data.results);
+            console.log(setSearchResults);
         } catch (error) {
             setError(error);
         }
@@ -48,7 +49,7 @@ const BibleSearch = () => {
                            onChange={(e) => setSearchTerm(e.target.value)}/>
                     <button type="submit">Zoek</button>
                 </form>
-                {error && <p>Er is een fout opgetreden:: {error.message}</p>}
+                {error && <p>Er is een fout opgetreden: {error.message}</p>}
                 {searchResults.map((result) => (
                     <div key={result.id}>
                         <h2>{result.reference}</h2>
