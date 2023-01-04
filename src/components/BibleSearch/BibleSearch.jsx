@@ -7,10 +7,10 @@ const BibleSearch = () => {
     const [error, setError] = useState(null);
     const [bibleIds, setBibleIds] = useState([]);
 
-    useEffect(()=>{
+    useEffect(() => {
         const fetchBibleIds = async () => {
             try {
-                const response = await fetch('https://api.scripture.api.bible/v1/bibles');
+                const response = await fetch('https://api.scripture.api.bible/v1/bibles?api-key=dc597b00-5a0a-403b-a2af-9e1eabd797a1');
                 const data = await response.json();
                 setBibleIds(data.data);
             } catch (error) {
@@ -20,9 +20,9 @@ const BibleSearch = () => {
         fetchBibleIds();
     }, []);
 
-    const handleSearch = async (e) =>{
+    const handleSearch = async (e) => {
         e.preventDefault();
-        try{
+        try {
             const response = await fetch(`https://api.scripture.api.bible/v1/bibles/${bibleId}/search?query=${searchTerm}`);
             const data = await response.json();
             setSearchResults(data.results);
@@ -31,10 +31,32 @@ const BibleSearch = () => {
         }
     };
 
-
     return (
         <>
-
+            <div>
+                <form onSubmit={handleSearch}>
+                    <label htmlFor="bible-select">Selecteer een Bijbel:</label>
+                    <select name="bible-select" id="bible-select" value={bibleId}
+                            onChange={(e) => setBibleId(e.target.value)}>
+                        <option value="">Selecteer een Bijbel</option>
+                        {bibleIds && bibleIds.length > 0 && bibleIds.map((id) => (
+                            <option key={id} value={id}>{id}</option>
+                        ))}
+                    </select>
+                    <br/>
+                    <label htmlFor="search-input">Zoeken:</label>
+                    <input type="text" id="search-input" value={searchTerm}
+                           onChange={(e) => setSearchTerm(e.target.value)}/>
+                    <button type="submit">Zoek</button>
+                </form>
+                {error && <p>Er is een fout opgetreden:: {error.message}</p>}
+                {searchResults.map((result) => (
+                    <div key={result.id}>
+                        <h2>{result.reference}</h2>
+                        <p>{result.content}</p>
+                    </div>
+                ))}
+            </div>
         </>
     );
 };
