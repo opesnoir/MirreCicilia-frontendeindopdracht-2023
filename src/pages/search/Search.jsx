@@ -4,11 +4,13 @@ import BibleSearch from "../../components/BibleSearch/BibleSearch";
 import TestApi from "../../components/TestApi";
 
 
+
 const Search = () => {
     return (
         <div>
             <BibleSearch/>
             {/*<TestApi/>*/}
+
         </div>
     );
 };

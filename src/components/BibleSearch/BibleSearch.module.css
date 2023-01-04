@@ -1,0 +1,53 @@
+.bibleSearchOuterContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: #062948;
+    font-family: 'Inter', sans-serif;
+}
+
+.bibleSearchInnerContainer{
+    width: 80%;
+    padding: 20px 50px;
+    margin: 100px 120px 0 120px;
+    min-height: 250px;
+    background-color: #f7f0f0;
+}
+
+.registerForminput{
+display: flex;
+    flex-direction: row;
+    padding: 12px 12px;
+    margin: 5px 5px ;
+    word-spacing: 2px;
+    align-items: center;
+
+}
+
+
+.loginImg{
+    box-sizing: border-box;
+    display: block;
+    height: auto;
+    padding-bottom: 75px;
+    margin-bottom: 40px;
+    width: 100%;
+    max-width: 100%;
+}
+
+select{
+    margin: 20px;
+}
+
+.errorsTekst{
+    color: #860E0E;
+    font-size: 13px;
+    margin-left: 60px;
+    font-family: 'Inter', sans-serif;
+}
+
+hr{
+    border: 1px solid #808080;
+    padding-right: 40px;
+    padding-left: 40px;
+}
