@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import axios from "axios";
 
 const BibleSearch = () => {
     const [bibleId, setBibleId] = useState('english-standard-version');
@@ -10,9 +11,8 @@ const BibleSearch = () => {
     useEffect(() => {
         const fetchBibleIds = async () => {
             try {
-                const response = await fetch('https://api.scripture.api.bible/v1/bibles?api-key=dc597b00-5a0a-403b-a2af-9e1eabd797a1');
-                const data = await response.json();
-                setBibleIds(data.data);
+                const response = await axios.get('https://api.scripture.api.bible/v1/bibles?api-key=dc597b00-5a0a-403b-a2af-9e1eabd797a1');
+                setBibleIds(response.data.data);
             } catch (error) {
                 setError(error);
             }
@@ -23,9 +23,8 @@ const BibleSearch = () => {
     const handleSearch = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`https://api.scripture.api.bible/v1/bibles/${bibleId}/search?query=${searchTerm}`);
-            const data = await response.json();
-            setSearchResults(data.results);
+            const response = await axios.get(`https://api.scripture.api.bible/v1/bibles/${bibleId}/search?query=${searchTerm}`);
+            setSearchResults(response.data.results);
         } catch (error) {
             setError(error);
         }
