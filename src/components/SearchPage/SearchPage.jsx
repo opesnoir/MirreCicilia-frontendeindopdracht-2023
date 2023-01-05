@@ -58,7 +58,7 @@ const SearchPage = () => {
                 },
             });
             console.log(response.data.data);
-            setSearchResults(response.data.data);
+            setSearchResults(response.data.data.verses);
         } catch (error) {
             console.error(error);
             setError(true);
@@ -95,7 +95,7 @@ const SearchPage = () => {
             {searchResults.length > 0 && (
                 <ul>
                     {searchResults.map((result) =>
-                        <li key={result.id}>{result.content}</li>
+                        <li key={result.id}>{result.text}</li>
                     )}
                 </ul>
             )}
