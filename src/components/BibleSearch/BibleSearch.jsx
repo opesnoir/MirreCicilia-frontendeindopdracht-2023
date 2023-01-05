@@ -51,7 +51,7 @@ const BibleSearch = () => {
                                 <label htmlFor="bible-select"></label>
                                 <select name="bible-select" id="bible-select" value={bibleId}
                                         onChange={(e) => setBibleId(e.target.value)}>
-                                    <option className={styles.rrForminput} value="">Selecteer een Bijbel</option>
+                                    <option className={styles.Forminput} value="">Selecteer een Bijbel</option>
                                     {bibleIds && bibleIds.length > 0 && bibleIds.map((id) => (
                                         <option key={id} value={id}>{id}</option>
                                     ))}
