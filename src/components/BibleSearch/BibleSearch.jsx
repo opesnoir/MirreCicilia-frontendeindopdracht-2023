@@ -5,12 +5,19 @@ import Button from "../Button/Button";
 import bibleSearchImgSheep from "../../assets/login-sheep-pexels-david-selbert-6467929-2.jpg";
 
 const BibleSearch = () => {
+
+    //API variable
+    const API_KEY = "1d925b504a9d2eab00eb33c578d4bdd1"
+
+    // state variables
     const [bibleId, setBibleId] = useState('english-standard-version');
     const [searchTerm, setSearchTerm] = useState('Jesus');
     const [searchResults, setSearchResults] = useState([]);
     const [error, setError] = useState(null);
     const [bibleIds, setBibleIds] = useState([]);
+    const [loading, setLoading] = useState(false);
 
+    //Async function
     useEffect(() => {
         const fetchBibleIds = async () => {
             try {
