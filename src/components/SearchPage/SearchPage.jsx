@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import styles from "../BibleSearch/BibleSearch.module.css";
+import styles from '../SearchPage/SearchPage.module.css';
+import searchPageImgSheep from "../../assets/login-sheep-pexels-david-selbert-6467929-2.jpg";
 
 //API variable
 const API_KEY = "1d925b504a9d2eab00eb33c578d4bdd1"
@@ -13,7 +14,8 @@ const SearchPage = () => {
     const [loading, setLoading] = useState(false);
     const [searchTerm, setSearchTerm] = useState('Jesus');
     const [searchResults, setSearchResults] = useState([]);
-    const [bible, setBible] = useState('english-standard-version')
+    const [bible, setBible] = useState('english-standard-version');
+    const [totalResults, setTotalResults] = useState(0)
 
     // async function to fetch a list of Bibles
     useEffect(() => {
@@ -57,8 +59,10 @@ const SearchPage = () => {
                     query: searchTerm,
                 },
             });
-            console.log(response.data.data);
+            /*console.log(response.data.data);*/
             setSearchResults(response.data.data.verses);
+            /*console.log(response.data.data.total)*/
+            setTotalResults(response.data.data.total)
         } catch (error) {
             console.error(error);
             setError(true);
@@ -69,36 +73,51 @@ const SearchPage = () => {
 
     return (
         <>
-            {error && <span>Er is een fout opgetreden: {error.message} </span>}
             {loading && <span>Loading...</span>}
-            <form onSubmit={handleSearch}>
-                <label htmlFor="bible">Selecteer een Bijbel:</label>
-                <select
-                    name="bible"
-                    id="bible"
-                    value={bible}
-                    onChange={(e) => setBible(e.target.value)}>
-                    {data.map((b) => (
-                        <option key={b.id} value={b.id}>
-                            {b.name}
-                        </option>
-                    ))}
-                </select>
-                <label htmlFor="searchTerm">Voer een zoekterm in:</label>
-                <input
-                    type="text"
-                    name="searchTerm"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}/>
-                <button type="submit">Zoeken</button>
-            </form>
-            {searchResults.length > 0 && (
-                <ul>
-                    {searchResults.map((result) =>
-                        <li key={result.id}>{result.text}</li>
-                    )}
-                </ul>
-            )}
+            <div className={styles.searchPageOuterContainer}>
+                <div className={styles.searchPageInnerContainer}>
+                    <div>
+                        <form onSubmit={handleSearch} className={styles.searchPageFormContainer}>
+                            <label htmlFor="bible">Selecteer een Bijbel:</label>
+                            <select
+                                name="bible"
+                                id="bible"
+                                value={bible}
+                                onChange={(e) => setBible(e.target.value)}>
+                                {data.map((b) => (
+                                    <option key={b.id} value={b.id}>
+                                        {b.name}
+                                    </option>
+                                ))}
+                            </select>
+                            <label htmlFor="searchTerm">Voer een zoekterm in:</label>
+                            <input
+                                type="text"
+                                name="searchTerm"
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}/>
+                            <button type="submit">Zoeken</button>
+                        </form>
+                        {error && <span className={styles.errorsTekst}>Er is een fout opgetreden: De Bijbeltaal en zoektermtaal dienen overeen te komen. {error.message} </span>}
+                        <hr/>
+                        {totalResults > 0 && (
+                            <p className={styles.searchPageTotalResults}> Totaal aantal resultaten: <span className={styles.searchPageTotalResultsAantal}>{totalResults}</span></p>
+                        )}
+                        {searchResults.length > 0 && (
+                            <ul className={styles.searchPageUlistItems}>
+                                {searchResults.map((result) =>
+                                    <li key={result.id} className={`${styles.searchPageListItems} search-result-item`}>
+                                        <span className={styles.searchPageReference}>{result.reference}</span> <span
+                                        className={styles.searchPageText}>{result.text}</span></li>
+                                )}
+                            </ul>
+                        )}
+                    </div>
+                </div>
+            </div>
+            <div>
+                <img className={styles.searchPageImg} src={searchPageImgSheep} alt="Afbeelding van een Schaap"/>
+            </div>
         </>
     );
 };
