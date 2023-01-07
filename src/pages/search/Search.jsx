@@ -6,7 +6,6 @@ import SearchPage from "../../components/SearchPage/SearchPage";
 const Search = () => {
     return (
         <div>
-            {/*<BibleSearch/>*/}
             <SearchPage/>
         </div>
     );
