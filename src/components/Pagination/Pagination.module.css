@@ -1,0 +1,27 @@
+.pagination{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    margin: 2px 20px;
+
+}
+
+.pagination button {
+    margin: 0 10px;
+    width: 27px;
+    height: 27px;
+    font-size: 15px;
+    font-family: 'Inter', sans-serif;
+    font-weight: normal;
+    color: #062948;
+    border-style: none;
+
+}
+
+.pagination button.active{
+    font-weight: bold;
+    background-color: #062948;
+    color: #f7f0f0;
+    border-radius: 3px;
+}
+

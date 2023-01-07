@@ -2,7 +2,8 @@ import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import styles from '../SearchPage/SearchPage.module.css';
 import searchPageImgSheep from "../../assets/login-sheep-pexels-david-selbert-6467929-2.jpg";
-import NextPage from "../NextPage/NextPage";
+import Pagination from "../Pagination/Pagination";
+
 
 //API variable
 const API_KEY = process.env.REACT_APP_API_KEY
@@ -17,6 +18,8 @@ const SearchPage = () => {
     const [searchResults, setSearchResults] = useState([]);
     const [bible, setBible] = useState('english-standard-version');
     const [totalResults, setTotalResults] = useState(0)
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postPerPage, setPostPerPage] = useState(5);
 
     // async function to fetch a list of Bibles
     useEffect(() => {
@@ -72,9 +75,13 @@ const SearchPage = () => {
         }
     };
 
+    const lastPostIndex = currentPage * postPerPage;
+    const firstPostIndex = lastPostIndex - postPerPage;
+    // variable that hides post that should not yet be displayed
+    const currentPost = searchResults.slice(firstPostIndex, lastPostIndex);
+
     return (
         <>
-            {loading && <span>Loading...</span>}
             <div className={styles.searchPageOuterContainer}>
                 <div className={styles.searchPageInnerContainer}>
                     <div>
@@ -101,22 +108,29 @@ const SearchPage = () => {
                         </form>
                         {error && <span className={styles.errorsTekst}>Er is een fout opgetreden: De Bijbeltaal en zoektermtaal dienen overeen te komen. {error.message} </span>}
                         <hr/>
+                        {loading && <span className={styles.loadingTekst} >Loading...</span>}
                         {totalResults > 0 && (
                             <p className={styles.searchPageTotalResults}> Totaal aantal resultaten: <span className={styles.searchPageTotalResultsAantal}>{totalResults}</span></p>
                         )}
-                        {searchResults.length > 0 && (
+                        {currentPost.length > 0 && (
                             <ul className={styles.searchPageUlistItems}>
-                                {searchResults.map((result) =>
+                                {currentPost.map((result) =>
                                     <li key={result.id} className={`${styles.searchPageListItems} search-result-item`}>
                                         <span className={styles.searchPageReference}>{result.reference}</span> <span
                                         className={styles.searchPageText}>{result.text}</span></li>
                                 )}
                             </ul>
                         )}
+                        <Pagination
+                            totalPost={searchResults.length}
+                            postPerPage={postPerPage}
+                            currentPage={currentPage}
+                            setCurrentPage={setCurrentPage}
+                        />
                     </div>
                 </div>
             </div>
-            <NextPage/>
+
             <div>
                 <img className={styles.searchPageImg} src={searchPageImgSheep} alt="Afbeelding van een Schaap"/>
             </div>

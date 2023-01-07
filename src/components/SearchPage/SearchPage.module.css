@@ -87,3 +87,10 @@ hr{
     color: #623a1f;
     font-weight: lighter;
 }
+
+.loadingTekst{
+    color: #860E0E;
+    font-weight: bold;
+    font-size: 12px;
+    margin-left: 20px;
+}
