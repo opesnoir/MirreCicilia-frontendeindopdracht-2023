@@ -1,3 +1,4 @@
+// import required dependencies
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import styles from '../SearchPage/SearchPage.module.css';
@@ -5,12 +6,19 @@ import searchPageImgSheep from "../../assets/login-sheep-pexels-david-selbert-64
 import Pagination from "../Pagination/Pagination";
 
 
-//API variable
+//API key stored in environment variable to keep it out of version control, API is used to acces Bible API
 const API_KEY = process.env.REACT_APP_API_KEY
 
+// searchPage component
 const SearchPage = () => {
 
-    // state variables
+ // state variables:
+    // data - list of Bibles, dropdown menu
+    // error - for error while fetching data (boolean)
+    // loading - for data currently fetched (boolean)
+    // searchTerm - current search term user enters
+    // Bible - for Bible currently selected by user
+    // totalResults - total number of search results for searchTerm
     const [data, setData] = useState([]);
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -18,6 +26,8 @@ const SearchPage = () => {
     const [searchResults, setSearchResults] = useState([]);
     const [bible, setBible] = useState('english-standard-version');
     const [totalResults, setTotalResults] = useState(0)
+
+    // state variables for pagination and post per page
     const [currentPage, setCurrentPage] = useState(1);
     const [postPerPage, setPostPerPage] = useState(5);
 
@@ -54,7 +64,8 @@ const SearchPage = () => {
         e.preventDefault();
         try {
             setLoading(true);
-            const response = await axios.get(`https://api.scripture.api.bible/v1/bibles/${bible}/search`, {
+            const response = await axios.get(`https://api.scripture.api.bible/v1/bibles/${bible}/search`,
+                {
                 // header data (includes API key)
                 headers: {
                     'api-key': API_KEY,
@@ -63,7 +74,7 @@ const SearchPage = () => {
                     query: searchTerm,
                 },
             });
-            console.log(response.data.data);
+            /*console.log(response.data.data);*/
             setSearchResults(response.data.data.verses);
             /*console.log(response.data.data.total)*/
             setTotalResults(response.data.data.total)
@@ -74,12 +85,16 @@ const SearchPage = () => {
             setLoading(false);
         }
     };
-
+// paginate through a list of search results.
+    // lastPostIndex - gives index of last post of current page
+    // firstPostIndex - gives index of first post of current page
+    // currentPage - slice() methode gives back a new array containing the post (1-5, 6-10 ...) to be displayed on the current page
     const lastPostIndex = currentPage * postPerPage;
     const firstPostIndex = lastPostIndex - postPerPage;
     // variable that hides post that should not yet be displayed
     const currentPost = searchResults.slice(firstPostIndex, lastPostIndex);
 
+    // render searchpage
     return (
         <>
             <div className={styles.searchPageOuterContainer}>
@@ -108,9 +123,10 @@ const SearchPage = () => {
                         </form>
                         {error && <span className={styles.errorsTekst}>Er is een fout opgetreden: De Bijbeltaal en zoektermtaal dienen overeen te komen. {error.message} </span>}
                         <hr/>
-                        {loading && <span className={styles.loadingTekst} >Loading...</span>}
+                        {loading && <span className={styles.loadingTekst}>Loading...</span>}
                         {totalResults > 0 && (
-                            <p className={styles.searchPageTotalResults}> Totaal aantal resultaten: <span className={styles.searchPageTotalResultsAantal}>{totalResults}</span></p>
+                            <p className={styles.searchPageTotalResults}> Totaal aantal resultaten: <span
+                                className={styles.searchPageTotalResultsAantal}>{totalResults}</span></p>
                         )}
                         {currentPost.length > 0 && (
                             <ul className={styles.searchPageUlistItems}>
@@ -130,7 +146,6 @@ const SearchPage = () => {
                     </div>
                 </div>
             </div>
-
             <div>
                 <img className={styles.searchPageImg} src={searchPageImgSheep} alt="Afbeelding van een Schaap"/>
             </div>
