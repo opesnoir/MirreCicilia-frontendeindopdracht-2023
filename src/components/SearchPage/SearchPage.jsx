@@ -2,9 +2,10 @@ import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import styles from '../SearchPage/SearchPage.module.css';
 import searchPageImgSheep from "../../assets/login-sheep-pexels-david-selbert-6467929-2.jpg";
+import NextPage from "../NextPage/NextPage";
 
 //API variable
-const API_KEY = "1d925b504a9d2eab00eb33c578d4bdd1"
+const API_KEY = process.env.REACT_APP_API_KEY
 
 const SearchPage = () => {
 
@@ -59,7 +60,7 @@ const SearchPage = () => {
                     query: searchTerm,
                 },
             });
-            /*console.log(response.data.data);*/
+            console.log(response.data.data);
             setSearchResults(response.data.data.verses);
             /*console.log(response.data.data.total)*/
             setTotalResults(response.data.data.total)
@@ -115,6 +116,7 @@ const SearchPage = () => {
                     </div>
                 </div>
             </div>
+            <NextPage/>
             <div>
                 <img className={styles.searchPageImg} src={searchPageImgSheep} alt="Afbeelding van een Schaap"/>
             </div>
